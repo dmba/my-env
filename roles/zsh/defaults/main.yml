@@ -1,0 +1,4 @@
+---
+# defaults file for zsh
+
+zsh_antigen_repo: "https://github.com/zsh-users/antigen.git"

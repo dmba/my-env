@@ -1,0 +1,58 @@
+---
+# tasks file for zsh
+
+- name: zsh | install packages
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - zsh
+  tags: zsh
+
+- name: zsh | get path
+  command: which zsh 
+  register: zsh_path
+  changed_when: no
+  tags: zsh
+
+- name: zsh | switch shell
+  user:
+    name: "{{ item }}"
+    shell: "{{ zsh_path.stdout }}"
+  with_items: "{{ common_users }}"
+  become: yes
+  tags: zsh
+
+- name: zsh | clone antigen
+  become: yes
+  git:
+    repo: "{{ zsh_antigen_repo }}"
+    dest: "/home/{{ item }}/.antigen"
+    accept_hostkey: yes
+    update: no
+  with_items: "{{ common_users }}"
+  register: zsh_register_antigen_clone
+  tags: [ zsh, antigen ]
+
+- name: zsh | set permissions for antigen
+  become: yes
+  file:
+    path: "/home/{{ item }}/.antigen"
+    owner: "{{ item }}"
+    group: "{{ item }}"
+    state: directory
+    recurse: yes
+  with_items: "{{ common_users }}"
+  tags: [ zsh, antigen ]
+
+- name: zsh | create zshrc file
+  become: yes
+  template:
+    src: zshrc.j2
+    dest: "/home/{{ item }}/.zshrc"
+    owner: "{{ item }}"
+    group: "{{ item }}"
+    mode: 0640
+  with_items: "{{ common_users }}"
+  tags: [ zsh ]

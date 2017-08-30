@@ -1,0 +1,27 @@
+HIST_STAMPS="yyyy/mm/dd"
+
+source ~/.bash_aliases
+source ~/.antigen/antigen.zsh
+
+# load the oh-my-zsh's library.
+antigen use oh-my-zsh
+
+# zsh default plugins
+{% for plugin in zsh_antigen_default_plugins %}
+antigen bundle {{ plugin }}
+{% endfor %}
+
+# zsh custom plugins
+{% for plugin in zsh_antigen_custom_plugins %}
+antigen bundle {{ plugin }}
+{% endfor %}
+
+# load the theme
+antigen theme {{ zsh_antigen_theme }}
+
+# we are done
+antigen apply
+
+# user configs
+[[ -r /etc/zsh/zshrc.local ]] && source /etc/zsh/zshrc.local
+[[ -r "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"

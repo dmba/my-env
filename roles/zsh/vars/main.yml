@@ -1,0 +1,14 @@
+---
+# vars file for zsh
+zsh_antigen_default_plugins:
+  - git
+  - tig
+  - mvn
+  - gradle
+  - command-not-found
+
+zsh_antigen_custom_plugins:
+  - zsh-users/zsh-syntax-highlighting
+  - zsh-users/zsh-autosuggestions
+
+zsh_antigen_theme: robbyrussell
