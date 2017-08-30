@@ -1,0 +1,21 @@
+---
+# vars file for common
+common_packages:
+  - ansible
+  - sudo
+  - git
+  - wget
+  - vim
+  - tmux
+  - tree
+  - sed
+  - mc
+  - rsync
+  - rar
+  - unzip
+  - unrar
+  - tig
+  - htop
+  - ncdu
+  - fortune
+  - cowsay

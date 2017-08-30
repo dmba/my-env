@@ -1,0 +1,28 @@
+[core]
+editor = vim
+
+[color]
+branch = auto
+diff = auto
+interactive = auto
+status = auto
+
+[alias]
+br = branch
+ca = commit --amend
+ci = commit
+cl = clone
+co = checkout
+cp = cherry-pick
+dc = diff --cached
+diff = diff --color-words=.
+lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)'
+st = status
+ft = fetch
+rb = rebase
+
+[status]
+showUntrackedFiles = all
+
+[help]
+autocorrect = 1

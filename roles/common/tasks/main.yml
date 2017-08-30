@@ -1,0 +1,26 @@
+---
+# tasks file for common
+- name: common | install common packages
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ common_packages }}"
+  tags: common
+
+- name: common | copy aliases config files
+  become: yes
+  copy: src=files/aliases.sh dest=/home/{{ item }}/.bash_aliases
+  with_items: "{{ common_users }}"
+  tags: common
+
+- name: common | configure vim
+  become: yes
+  copy: src=files/vimrc dest=/home/{{ item }}/.vimrc
+  with_items: "{{ common_users }}"
+  tags: common
+
+- name: common | configure git
+  become: yes
+  copy: src=files/gitconfig dest=/etc/gitconfig
+  tags: common
