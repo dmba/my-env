@@ -1,6 +1,6 @@
 ---
 # tasks file for common
-- name: common | install common packages
+- name: common | install packages
   become: yes
   apt:
     name: "{{ item }}"

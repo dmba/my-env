@@ -10,7 +10,7 @@ status = auto
 [alias]
 br = branch
 ca = commit --amend
-ci = commit
+ci = commit -m
 cl = clone
 co = checkout
 cp = cherry-pick

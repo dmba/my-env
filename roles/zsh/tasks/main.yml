@@ -55,4 +55,4 @@
     group: "{{ item }}"
     mode: 0640
   with_items: "{{ common_users }}"
-  tags: [ zsh ]
+  tags: zsh

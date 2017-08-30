@@ -1,10 +1,8 @@
-export LS_OPTIONS='--color=auto'
-
-alias ls='ls $LS_OPTIONS'
-alias ll='ls $LS_OPTIONS -l'
-alias la='ls $LS_OPTIONS -lA'
+alias ll='ls -l'
+alias la='ls -lA'
 alias mk='mkdir -p'
 alias cp='cp -r'
+alias ..='cd ..'
 alias z='cd -'
 alias c='clear'
 alias t='touch'
