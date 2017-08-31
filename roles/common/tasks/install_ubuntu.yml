@@ -1,0 +1,10 @@
+---
+# tasks file for common
+
+- name: common | install packages ubuntu
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ common_packages }}"
+  tags: [ common, ubuntu ]

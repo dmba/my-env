@@ -1,0 +1,9 @@
+---
+# tasks file for common
+
+- name: zsh | install packages macos
+  homebrew:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ zsh_packages }}"
+  tags: [ zsh, macos ]

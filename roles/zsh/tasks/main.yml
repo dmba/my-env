@@ -1,14 +1,11 @@
 ---
 # tasks file for zsh
 
-- name: zsh | install packages
-  become: yes
-  apt:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - zsh
-  tags: zsh
+- include: install_ubuntu.yml
+  when: ansible_distribution == 'Ubuntu'
+
+- include: install_macos.yml
+  when: ansible_os_family == 'Darwin'
 
 - name: zsh | get path
   command: which zsh 
@@ -17,42 +14,35 @@
   tags: zsh
 
 - name: zsh | switch shell
-  user:
-    name: "{{ item }}"
-    shell: "{{ zsh_path.stdout }}"
-  with_items: "{{ common_users }}"
   become: yes
+  user:
+    name: "{{ common_user }}"
+    shell: "{{ zsh_path.stdout }}"
   tags: zsh
 
 - name: zsh | clone antigen
   become: yes
   git:
     repo: "{{ zsh_antigen_repo }}"
-    dest: "/home/{{ item }}/.antigen"
+    dest: "{{ common_home }}/.antigen"
     accept_hostkey: yes
     update: no
-  with_items: "{{ common_users }}"
-  register: zsh_register_antigen_clone
   tags: [ zsh, antigen ]
 
 - name: zsh | set permissions for antigen
   become: yes
   file:
-    path: "/home/{{ item }}/.antigen"
-    owner: "{{ item }}"
-    group: "{{ item }}"
+    path: "{{ common_home }}/.antigen"
+    owner: "{{ common_user }}"
     state: directory
     recurse: yes
-  with_items: "{{ common_users }}"
   tags: [ zsh, antigen ]
 
 - name: zsh | create zshrc file
   become: yes
   template:
     src: zshrc.j2
-    dest: "/home/{{ item }}/.zshrc"
-    owner: "{{ item }}"
-    group: "{{ item }}"
+    dest: "{{ common_home }}/.zshrc"
+    owner: "{{ common_user }}"
     mode: 0640
-  with_items: "{{ common_users }}"
   tags: zsh

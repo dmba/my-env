@@ -1,26 +1,23 @@
 ---
 # tasks file for common
-- name: common | install packages
-  become: yes
-  apt:
-    name: "{{ item }}"
-    state: present
-  with_items: "{{ common_packages }}"
-  tags: common
+
+- include: install_ubuntu.yml
+  when: ansible_distribution == 'Ubuntu'
+
+- include: install_macos.yml
+  when: ansible_os_family == 'Darwin'
 
 - name: common | copy aliases config files
   become: yes
-  copy: src=files/aliases.sh dest=/home/{{ item }}/.bash_aliases
-  with_items: "{{ common_users }}"
+  copy: src=files/aliases.sh dest={{ common_home }}/.bash_aliases
   tags: common
 
 - name: common | configure vim
   become: yes
-  copy: src=files/vimrc dest=/home/{{ item }}/.vimrc
-  with_items: "{{ common_users }}"
+  copy: src=files/vimrc dest={{ common_home }}/.vimrc
   tags: common
 
 - name: common | configure git
   become: yes
-  copy: src=files/gitconfig dest=/etc/gitconfig
+  copy: src=files/gitconfig dest={{ common_home }}/.gitconfig
   tags: common

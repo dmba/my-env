@@ -1,5 +1,8 @@
 ---
 # vars file for zsh
+zsh_packages:
+  - zsh
+
 zsh_antigen_default_plugins:
   - git
   - tig

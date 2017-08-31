@@ -1,4 +1,4 @@
 ---
 # defaults file for common
-common_users:
-  - "{{ ansible_ssh_user|default(lookup('env', 'USER'))  }}"
+common_user: "{{ ansible_ssh_user|default(lookup('env', 'USER')) }}"
+common_home: "~{{ common_user }}"

@@ -4,9 +4,9 @@
 
 $VM_BOX = ENV.has_key?('VM_BOX') ? ENV['VM_BOX'] : 'bento/ubuntu-16.04'
 
-VAGRANTFILE_API_VERSION = "2"
+$VAGRANTFILE_API_VERSION = "2"
 
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+Vagrant.configure($VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = $VM_BOX
   config.vm.synced_folder '.', '/vagrant', disabled: true
 
