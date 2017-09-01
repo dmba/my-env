@@ -1,16 +1,16 @@
 ---
 # tasks file for common
 
-- name: check Homebrew location
-  stat:
-    path: which brew 
+- name: get Homebrew location
+  command: which brew
   register: common_homebrew_path
+  changed_when: no
   tags: [ common, macos ]
 
-# - name: install Homebrew
-#   script: install-homebrew.sh
-#   when: not common_homebrew_path.stat.exists
-#   tags: [ common, macos ]
+- name: install Homebrew
+  script: install-homebrew.sh
+  when: common_homebrew_path.stdout == ""
+  tags: [ common, macos ]
 
 - name: install packages macos
   homebrew:
