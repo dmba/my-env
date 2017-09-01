@@ -1,0 +1,6 @@
+---
+- name: My Workstation
+  hosts: mycomputer
+  roles:
+    - common
+    - zsh

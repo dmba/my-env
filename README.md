@@ -1,38 +1,45 @@
 My Working Environment
 =========
 
-A brief description of the role goes here.
+Ansible provisioning of my working environment for macOS and Ubuntu
 
-Requirements
+Usage
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
-
-Role Variables
---------------
-
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
-
-Dependencies
+Install ansible : [How to install ansible](http://docs.ansible.com/intro_installation.html).
+```sh
+git clone git://github.com/dmba/my-env ~/.my-env
+cd ~/.my-env
+ansible-playbook -i hosts provision.yml --ask-sudo-pass
+```
+Testing
 ------------
+Install vagrant : [How to install vagrant](https://www.vagrantup.com/downloads.html)
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+- macOS
+```sh
+cd ~/.my-env/tests
+export VM_BOX='jhcook/macos-sierra'
+vagrant up
+```
+- ubuntu 16.04
+```sh
+cd ~/.my-env/tests
+export VM_BOX='bento/ubuntu-16.04'
+vagrant up
+```
 
-Example Playbook
-----------------
+Run provision again:
+```sh
+vagrant provision
+```
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+Connect to Virtual Machine
+```sh
+vagrant ssh
+```
 
 License
 -------
 
-BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+MIT

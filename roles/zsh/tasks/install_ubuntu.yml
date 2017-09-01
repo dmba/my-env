@@ -1,10 +1,10 @@
 ---
 # tasks file for common
 
-- name: zsh | install packages ubuntu
+- name: install packages ubuntu
   become: yes
   apt:
     name: "{{ item }}"
     state: present
   with_items: "{{ zsh_packages }}"
-  tags: [ common, ubuntu ]
+  tags: [ zsh, ubuntu ]

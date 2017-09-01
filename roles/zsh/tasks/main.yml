@@ -7,20 +7,20 @@
 - include: install_macos.yml
   when: ansible_os_family == 'Darwin'
 
-- name: zsh | get path
+- name: get path
   command: which zsh 
   register: zsh_path
   changed_when: no
   tags: zsh
 
-- name: zsh | switch shell
+- name: switch shell
   become: yes
   user:
     name: "{{ common_user }}"
     shell: "{{ zsh_path.stdout }}"
   tags: zsh
 
-- name: zsh | clone antigen
+- name: clone antigen
   become: yes
   git:
     repo: "{{ zsh_antigen_repo }}"
@@ -29,7 +29,7 @@
     update: no
   tags: [ zsh, antigen ]
 
-- name: zsh | set permissions for antigen
+- name: set permissions for antigen
   become: yes
   file:
     path: "{{ common_home }}/.antigen"
@@ -38,7 +38,7 @@
     recurse: yes
   tags: [ zsh, antigen ]
 
-- name: zsh | create zshrc file
+- name: create zshrc file
   become: yes
   template:
     src: zshrc.j2

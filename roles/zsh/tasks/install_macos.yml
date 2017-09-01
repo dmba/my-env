@@ -1,7 +1,7 @@
 ---
 # tasks file for common
 
-- name: zsh | install packages macos
+- name: install packages macos
   homebrew:
     name: "{{ item }}"
     state: present
