@@ -6,23 +6,21 @@ Ansible provisioning of my working environment for macOS and Ubuntu
 Usage
 ------------
 
-Install ansible : [How to install ansible](http://docs.ansible.com/intro_installation.html).
+Install Ansible : [How to install Ansible](http://docs.ansible.com/intro_installation.html).
 ```sh
-git clone git://github.com/dmba/my-env ~/.my-env
-cd ~/.my-env
-ansible-playbook -i hosts provision.yml --ask-sudo-pass
+curl -s https://raw.githubusercontent.com/dmba/my-env/master/checkout-and-install.sh | bash
 ```
 Testing
 ------------
-Install vagrant : [How to install vagrant](https://www.vagrantup.com/downloads.html)
+Install Vagrant : [How to install Vagrant](https://www.vagrantup.com/downloads.html)
 
-- macOS
+- macOS Virtual Machine
 ```sh
 cd ~/.my-env/tests
 export VM_BOX='jhcook/macos-sierra'
 vagrant up
 ```
-- ubuntu 16.04
+- ubuntu 16.04  Virtual Machine
 ```sh
 cd ~/.my-env/tests
 export VM_BOX='bento/ubuntu-16.04'

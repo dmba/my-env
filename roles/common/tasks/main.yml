@@ -8,16 +8,13 @@
   when: ansible_os_family == 'Darwin'
 
 - name: common | copy aliases config files
-  become: yes
   copy: src=files/aliases.sh dest={{ common_home }}/.bash_aliases
   tags: common
 
 - name: common | configure vim
-  become: yes
   copy: src=files/vimrc dest={{ common_home }}/.vimrc
   tags: common
 
 - name: common | configure git
-  become: yes
   copy: src=files/gitconfig dest={{ common_home }}/.gitconfig
   tags: common
